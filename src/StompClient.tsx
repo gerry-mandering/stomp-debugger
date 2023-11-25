@@ -28,6 +28,7 @@ const StompClient: React.FC = () => {
 
     return (
         <div className="p-4 max-w-md mx-auto">
+            <label className="block text-gray-700 text-sm font-bold mb-2"> WebSocket Connection</label>
             <input
                 type="text"
                 placeholder="Connection Path (ws://localhost:8080/{YOUR_PATH})"
@@ -35,6 +36,12 @@ const StompClient: React.FC = () => {
                 onChange={e => setConnectionPath(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
             />
+            <button
+                onClick={connect}
+                className="bg-blue-500 text-white px-4 py-2 rounded mt-4 mr-2 hover:bg-blue-600">
+                Connect
+            </button>
+            <label className="block text-gray-700 text-sm font-bold mb-2 mt-4">STOMP Endpoint</label>
             <input
                 type="text"
                 placeholder="STOMP Endpoint ({YOUR_ENDPOINT}})"
@@ -42,17 +49,13 @@ const StompClient: React.FC = () => {
                 onChange={e => setEndpoint(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-4"
             />
+            <label className="block text-gray-700 text-sm font-bold mb-2 mt-4">Message Content</label>
             <textarea
                 placeholder="Content"
                 value={content}
                 onChange={e => setContent(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-4 h-32"
             />
-            <button
-                onClick={connect}
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-4 mr-2 hover:bg-blue-600">
-                Connect
-            </button>
             <button
                 onClick={sendMessage}
                 className="bg-green-500 text-white px-4 py-2 rounded mt-4 hover:bg-green-600">
