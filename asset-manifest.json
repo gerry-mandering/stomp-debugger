@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/stomp-debugger/static/css/main.3bed353a.css",
-    "main.js": "/stomp-debugger/static/js/main.2310579c.js",
+    "main.css": "/stomp-debugger/static/css/main.5bef19b0.css",
+    "main.js": "/stomp-debugger/static/js/main.277078bd.js",
     "static/js/787.3eb55f74.chunk.js": "/stomp-debugger/static/js/787.3eb55f74.chunk.js",
     "index.html": "/stomp-debugger/index.html",
-    "main.3bed353a.css.map": "/stomp-debugger/static/css/main.3bed353a.css.map",
-    "main.2310579c.js.map": "/stomp-debugger/static/js/main.2310579c.js.map",
+    "main.5bef19b0.css.map": "/stomp-debugger/static/css/main.5bef19b0.css.map",
+    "main.277078bd.js.map": "/stomp-debugger/static/js/main.277078bd.js.map",
     "787.3eb55f74.chunk.js.map": "/stomp-debugger/static/js/787.3eb55f74.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3bed353a.css",
-    "static/js/main.2310579c.js"
+    "static/css/main.5bef19b0.css",
+    "static/js/main.277078bd.js"
   ]
 }
