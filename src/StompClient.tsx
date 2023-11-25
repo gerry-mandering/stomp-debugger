@@ -30,14 +30,14 @@ const StompClient: React.FC = () => {
         <div className="p-4 max-w-md mx-auto">
             <input
                 type="text"
-                placeholder="Connection Path (ws://localhost:8080/)"
+                placeholder="Connection Path (ws://localhost:8080/{YOUR_PATH})"
                 value={connectionPath}
                 onChange={e => setConnectionPath(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-1"
             />
             <input
                 type="text"
-                placeholder="STOMP Endpoint (/pub/test)"
+                placeholder="STOMP Endpoint ({YOUR_ENDPOINT}})"
                 value={endpoint}
                 onChange={e => setEndpoint(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded mt-4"
