@@ -1,5 +1,4 @@
 import React, { useState, FunctionComponent } from 'react';
-import SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 
 interface ConnectionPanelProps {
@@ -14,8 +13,7 @@ const ConnectionPanel: FunctionComponent<ConnectionPanelProps> = ({ stompClient,
 
     const handleConnect = () => {
         if (!isConnected && connectionPath) {
-            const socket = new SockJS(connectionPath);
-            const client = Stomp.over(socket);
+            const client = Stomp.client(connectionPath);
             client.connect({}, () => {
                 onConnect(client);
                 console.log('Connected to the WebSocket');
