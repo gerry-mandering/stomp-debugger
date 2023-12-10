@@ -1,15 +1,24 @@
-import React, { useState, FunctionComponent } from 'react';
+import React, {useState, FunctionComponent} from 'react';
 import * as Stomp from 'stompjs';
+import {Message} from './App';
 
 interface ConnectionPanelProps {
     stompClient: Stomp.Client | null;
     onConnect: (client: Stomp.Client) => void;
     onDisconnect: () => void;
     isConnected: boolean;
+    setUserQueueMessages: React.Dispatch<React.SetStateAction<Message[]>>;
 }
 
-const ConnectionPanel: FunctionComponent<ConnectionPanelProps> = ({ stompClient, onConnect, onDisconnect, isConnected }) => {
+const ConnectionPanel: FunctionComponent<ConnectionPanelProps> = ({
+                                                                      stompClient,
+                                                                      onConnect,
+                                                                      onDisconnect,
+                                                                      isConnected,
+                                                                      setUserQueueMessages
+                                                                  }) => {
     const [connectionPath, setConnectionPath] = useState<string>('ws://localhost:8080');
+    const [subscription, setSubscription] = useState<Stomp.Subscription | null>(null);
 
     const handleConnect = () => {
         if (!isConnected && connectionPath) {
@@ -17,11 +26,24 @@ const ConnectionPanel: FunctionComponent<ConnectionPanelProps> = ({ stompClient,
             client.connect({}, () => {
                 onConnect(client);
                 console.log('Connected to the WebSocket');
+
+                const sub = client.subscribe('/user/queue', message => {
+                    console.log('Received message:', message.body);
+                    const timestamp = new Date().toLocaleTimeString();
+                    setUserQueueMessages(prevMessages => [...prevMessages, { body: message.body, timestamp }]);
+                });
+                setSubscription(sub);
+
             }, error => {
                 console.error('Error connecting to WebSocket:', error);
             });
         } else {
             if (stompClient) {
+                // Unsubscribe before disconnecting
+                if (subscription) {
+                    subscription.unsubscribe();
+                    setSubscription(null);
+                }
                 stompClient.disconnect(() => {
                     onDisconnect();
                     console.log('Disconnected from the WebSocket');

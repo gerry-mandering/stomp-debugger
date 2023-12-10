@@ -4,9 +4,15 @@ import ConnectionPanel from './ConnectionPanel';
 import PublishMessage from './PublishMessage';
 import SubscribeMessage from './SubscribeMessage';
 
+export interface Message {
+    body: string;
+    timestamp: string;
+}
+
 const App: React.FC = () => {
     const [stompClient, setStompClient] = useState<Stomp.Client | null>(null);
     const [isConnected, setIsConnected] = useState<boolean>(false);
+    const [userQueueMessages, setUserQueueMessages] = useState<Message[]>([]);
 
     const handleConnect = (client: Stomp.Client) => {
         setStompClient(client);
@@ -29,6 +35,7 @@ const App: React.FC = () => {
                 onConnect={handleConnect}
                 onDisconnect={handleDisconnect}
                 isConnected={isConnected}
+                setUserQueueMessages={setUserQueueMessages}
             />
             {isConnected && stompClient && (
                 <div className="flex mt-8">
@@ -36,7 +43,7 @@ const App: React.FC = () => {
                         <PublishMessage stompClient={stompClient}/>
                     </div>
                     <div className="w-1/2">
-                        <SubscribeMessage stompClient={stompClient}/>
+                        <SubscribeMessage stompClient={stompClient} userQueueMessages={userQueueMessages}/>
                     </div>
                 </div>
             )}
