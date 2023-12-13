@@ -50,7 +50,7 @@ const SubscribeMessage: FunctionComponent<SubscribeMessageProps> = ({stompClient
     }, [endpoint, subscription]);
 
     return (
-        <div className="p-4 max-w-md mx-auto">
+        <div className="p-4 max-w-2xl mx-auto">
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Subscribe Endpoint</label>
                 <div className="flex items-center">

@@ -38,11 +38,11 @@ const App: React.FC = () => {
                 setUserQueueMessages={setUserQueueMessages}
             />
             {isConnected && stompClient && (
-                <div className="flex mt-8">
-                    <div className="w-1/2">
+                <div className="flex flex-col md:flex-row mt-8">
+                    <div className="w-full xl:w-1/2">
                         <PublishMessage stompClient={stompClient}/>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-full xl:w-1/2">
                         <SubscribeMessage stompClient={stompClient} userQueueMessages={userQueueMessages}/>
                     </div>
                 </div>
